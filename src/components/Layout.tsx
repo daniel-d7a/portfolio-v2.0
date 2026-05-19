@@ -110,7 +110,7 @@ export function Footer({ scrollTarget }: { scrollTarget: React.RefObject<HTMLDiv
   const { isLight } = useTheme()
 
   return (
-    <footer className="fixed bottom-0 left-0 w-full h-screen -z-10 bg-brand-fg text-brand-bg transition-colors duration-500 overflow-hidden flex flex-col justify-between pt-24 pb-8 px-6 md:px-12">
+    <footer className="fixed bottom-0 left-0 w-full h-screen bg-brand-fg text-brand-bg transition-colors duration-500 overflow-hidden flex flex-col justify-between pt-24 pb-8 px-6 md:px-12 pointer-events-none">
       
       {/* Background Vertical Stripes */}
       <div className={`absolute inset-0 flex pointer-events-none z-0 ${!isLight && "opacity-80"}`}>
@@ -123,7 +123,7 @@ export function Footer({ scrollTarget }: { scrollTarget: React.RefObject<HTMLDiv
       </div>
 
       {/* Slogan & Action */}
-      <div className="w-full flex flex-col items-center justify-center grow text-center relative z-10">
+      <div className="w-full flex flex-col items-center justify-center grow text-center relative z-10 pointer-events-auto">
         <h2 className="text-4xl sm:text-6xl lg:text-7xl font-display font-bold mb-8 tracking-tight leading-tight text-brand-fg">
           Let's build something great together.
         </h2>
@@ -153,7 +153,7 @@ export function Footer({ scrollTarget }: { scrollTarget: React.RefObject<HTMLDiv
       </div>
 
       {/* Bottom Bar */}
-      <div className="w-full flex flex-col sm:flex-row items-center justify-between gap-4 py-6 border-t border-white/20 text-[10px] md:text-xs font-mono opacity-80 relative z-10 text-white">
+      <div className="w-full flex flex-col sm:flex-row items-center justify-between gap-4 py-6 border-t border-white/20 text-[10px] md:text-xs font-mono opacity-80 relative z-10 text-brand-fg pointer-events-auto">
         <div>
           &copy; {new Date().getFullYear()} {PORTFOLIO_CONFIG.profile.firstName} {PORTFOLIO_CONFIG.profile.lastName}
         </div>

@@ -1,0 +1,65 @@
+@import "tailwindcss";
+
+/* Default variables for design tokens */
+:root {
+  --bg-primary: #E63E12;
+  --text-primary: #FEEAE3;
+  --text-secondary: rgba(254, 234, 227, 0.8);
+  --border-primary: rgba(254, 234, 227, 0.2);
+}
+
+.theme-1 {
+  --bg-primary: #E63E12;
+  --text-primary: #FEEAE3;
+  --text-secondary: rgba(254, 234, 227, 0.7);
+  --border-primary: rgba(254, 234, 227, 0.2);
+}
+
+.theme-2 {
+  --bg-primary: #121316;
+  --text-primary: #D4FF3B;
+  --text-secondary: rgba(212, 255, 59, 0.7);
+  --border-primary: rgba(212, 255, 59, 0.2);
+}
+
+.theme-3 {
+  --bg-primary: #0B2CFE;
+  --text-primary: #E6F0FF;
+  --text-secondary: rgba(230, 240, 255, 0.7);
+  --border-primary: rgba(230, 240, 255, 0.2);
+}
+
+@theme {
+  --color-brand-bg: var(--bg-primary);
+  --color-brand-fg: var(--text-primary);
+  --color-brand-muted: var(--text-secondary);
+  --color-brand-border: var(--border-primary);
+  --font-display: "Bricolage Grotesque", sans-serif;
+  --font-body: "Roboto", sans-serif;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  transition: background-color 0.5s ease, color 0.5s ease;
+  overflow-x: hidden;
+}
+
+/* Custom micro-animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}

@@ -129,10 +129,11 @@ export function Footer({ scrollTarget }: { scrollTarget: React.RefObject<HTMLDiv
         </h2>
         <a
           href={`mailto:${PORTFOLIO_CONFIG.profile.email}`}
-          className="text-brand-fg group relative inline-flex items-baseline text-3xl lg:text-4xl font-display font-black tracking-tight hover:opacity-85 transition-opacity z-10"
+          className="text-brand-fg group relative inline-flex items-baseline text-3xl lg:text-4xl font-display font-black tracking-tight hover:opacity-85 transition-opacity z-10 pb-1"
         >
-          <span className="">
+          <span className="relative">
             Get In Touch.
+            <span className="absolute bottom-0 left-0 w-full h-1 bg-brand-fg origin-left scale-x-0 transition-transform duration-300 group-hover:scale-x-100" />
           </span>
           <span className="inline-block transition-transform duration-300 group-hover:translate-x-2 group-hover:-translate-y-2 text-3xl lg:text-4xl font-light ml-3 select-none">
             <ArrowUpRight />

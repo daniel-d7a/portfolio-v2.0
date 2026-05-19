@@ -6,9 +6,9 @@ import PORTFOLIO_CONFIG from '../portfolio.json';
 
 export function Hero() {
   return (
-    <section className="px-6 md:px-12 py-16 md:py-24 max-w-7xl mx-auto relative min-h-[70vh] flex flex-col justify-between">
+    <section className="px-6 md:px-12 py-16 md:py-24 max-w-6xl mx-auto relative min-h-[70vh] flex flex-col justify-between">
       <div className="w-full animate-fade-in-up">
-        <h1 className="text-[12vw] sm:text-[14vw] font-display font-extrabold tracking-tighter leading-[0.85] select-none text-brand-fg">
+        <h1 className="text-[12vw] sm:text-[14vw] font-body font-black tracking-tighter leading-[0.85] select-none text-brand-fg">
           <div className="block">{PORTFOLIO_CONFIG.profile.firstName}</div>
           <div className="block mt-4 md:mt-8">{PORTFOLIO_CONFIG.profile.lastName}</div>
         </h1>
@@ -35,29 +35,31 @@ export function Hero() {
 export function Bio() {
   return (
     <section id="bio" className="bg-brand-bg border-t border-b border-brand-border py-24 md:py-36 px-6 md:px-12 transition-colors duration-500">
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-6xl mx-auto">
         <h2 className="text-3xl sm:text-5xl md:text-7xl font-display font-bold tracking-tight leading-[1.1] max-w-6xl mb-24 md:mb-36">
           {PORTFOLIO_CONFIG.bio.highlight}
         </h2>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 pt-12 border-t border-brand-border">
-          <div className="lg:col-span-4 flex items-center lg:items-start gap-4">
-            <span className="text-xs font-mono tracking-widest opacity-60">
-              (02 - 04)
-            </span>
-            <span className="text-xs uppercase font-bold tracking-widest">
-              ABOUT &amp; CAPABILITIES
-            </span>
+        <div className="flex flex-col gap-16 md:gap-24 pt-16 md:pt-24 border-t border-brand-border">
+          {/* Intro Row */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16">
+            <div className="flex items-start justify-between font-medium text-lg md:text-xl">
+              <div className="w-24 md:w-32 h-px bg-brand-fg/30 mt-3 md:mt-4"></div>
+              <div className="tracking-tight">Intro</div>
+            </div>
+            <div className="text-xl md:text-xl font-light leading-snug opacity-90">
+              {PORTFOLIO_CONFIG.bio.intro}
+            </div>
           </div>
 
-          <div className="lg:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-12 text-base md:text-lg leading-relaxed font-body">
-            <div className="space-y-4">
-              <span className="block text-xs font-bold uppercase tracking-widest opacity-50 mb-2">Intro</span>
-              <p className="opacity-90">{PORTFOLIO_CONFIG.bio.intro}</p>
+          {/* Work Row */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16">
+            <div className="flex items-start justify-between font-medium text-lg md:text-xl">
+              <div className="font-body tracking-tight opacity-90">(02 - 04)</div>
+              <div className="tracking-tight">Work</div>
             </div>
-            <div className="space-y-4">
-              <span className="block text-xs font-bold uppercase tracking-widest opacity-50 mb-2">Work</span>
-              <p className="opacity-90">{PORTFOLIO_CONFIG.bio.work}</p>
+            <div className="text-xl md:text-xl font-light leading-snug opacity-90">
+              {PORTFOLIO_CONFIG.bio.work}
             </div>
           </div>
         </div>
@@ -83,7 +85,7 @@ export function ProjectItem({ id, name, tags, year }: ProjectItemProps) {
       />
 
       <div className="flex items-center gap-6 md:gap-12">
-        <span className="text-xs md:text-sm font-mono tracking-widest opacity-60">
+        <span className="text-xs md:text-sm font-body tracking-widest opacity-60">
           {id}
         </span>
         <h3 className="text-3xl md:text-6xl font-display font-bold tracking-tight transition-transform duration-500 group-hover:translate-x-2">
@@ -115,7 +117,7 @@ export function ProjectItem({ id, name, tags, year }: ProjectItemProps) {
 
 export function Work() {
   return (
-    <section className="px-6 md:px-12 py-24 md:py-36 max-w-7xl mx-auto">
+    <section className="px-6 md:px-12 py-24 md:py-36 max-w-6xl mx-auto">
       <div className="mb-16 flex items-baseline justify-between border-b border-brand-border pb-6">
         <h2 className="text-2xl md:text-4xl font-display font-bold uppercase tracking-tight">
           Selected Work

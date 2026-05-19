@@ -2,31 +2,18 @@
 
 /* Default variables for design tokens */
 :root {
-  --bg-primary: #E63E12;
+  --bg-primary: #0c0a22;
   --text-primary: #FEEAE3;
   --text-secondary: rgba(254, 234, 227, 0.8);
   --border-primary: rgba(254, 234, 227, 0.2);
 }
 
-.theme-1 {
-  --bg-primary: #E63E12;
-  --text-primary: #FEEAE3;
-  --text-secondary: rgba(254, 234, 227, 0.7);
-  --border-primary: rgba(254, 234, 227, 0.2);
-}
-
-.theme-2 {
-  --bg-primary: #121316;
-  --text-primary: #D4FF3B;
-  --text-secondary: rgba(212, 255, 59, 0.7);
-  --border-primary: rgba(212, 255, 59, 0.2);
-}
-
-.theme-3 {
-  --bg-primary: #0B2CFE;
-  --text-primary: #E6F0FF;
-  --text-secondary: rgba(230, 240, 255, 0.7);
-  --border-primary: rgba(230, 240, 255, 0.2);
+/* Light mode overrides */
+.light {
+  --bg-primary: #F7F7F7;
+  --text-primary: #121212;
+  --text-secondary: rgba(18, 18, 18, 0.7);
+  --border-primary: rgba(18, 18, 18, 0.1);
 }
 
 @theme {
@@ -46,6 +33,12 @@ body {
   font-family: var(--font-body);
   transition: background-color 0.5s ease, color 0.5s ease;
   overflow-x: hidden;
+}
+
+/* Ensure the wrapper also respects the background variable */
+.min-h-screen {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
 }
 
 /* Custom micro-animations */

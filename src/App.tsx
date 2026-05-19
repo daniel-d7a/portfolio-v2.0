@@ -1,27 +1,16 @@
-import { useEffect, useState } from 'react';
+import { useRef } from 'react';
 import { Footer, HeaderCol, ThemeToggle } from './components/Layout';
 import { Bio, Hero, Work } from './components/Sections';
 import PORTFOLIO_CONFIG from './portfolio.json';
+import { ThemeProvider, useTheme } from './components/ThemeContext';
 
-export default function App() {
-  const [isLight, setIsLight] = useState(false);
-
-  // Sync with system preference on first load if no user choice
-  useEffect(() => {
-    const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    if (!isDark) setIsLight(true);
-  }, []);
-
-  // Update root element classes
-  useEffect(() => {
-    const root = window.document.documentElement;
-    root.classList.remove( 'light');
-    if (isLight) root.classList.add('light');
-  }, [isLight]);
+function AppContent() {
+  const { isLight, toggleTheme } = useTheme();
+  const footerRef = useRef<HTMLDivElement>(null);
 
   return (
-    <div className="min-h-screen bg-brand-bg text-brand-fg transition-colors duration-500 font-body antialiased selection:bg-brand-fg selection:text-brand-bg">
-      
+    <div className="font-body antialiased selection:bg-brand-fg selection:text-brand-bg">
+      <div className="relative z-10 bg-brand-bg text-brand-fg transition-colors duration-500 min-h-screen shadow-[0_20px_50px_rgba(0,0,0,0.5)] flex flex-col">
       {/* HEADER SECTION */}
       <header className="px-6 md:px-12 py-8 border-b border-brand-border">
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row md:items-start justify-between gap-8 md:gap-4">
@@ -39,18 +28,28 @@ export default function App() {
           <div className="flex items-center gap-4 self-start md:self-auto">
 
             {/* Light/Dark Toggle */}
-            <ThemeToggle isLight={isLight} toggle={() => setIsLight(!isLight)} />
+            <ThemeToggle isLight={isLight} toggle={toggleTheme} />
           </div>
         </div>
       </header>
 
-      <main>
+      <main className="grow">
         <Hero />
         <Bio />
         <Work />
       </main>
+      </div>
+      <div ref={footerRef} className="h-screen pointer-events-none" />
 
-      <Footer />
+      <Footer scrollTarget={footerRef} />
     </div>
+  );
+}
+
+export default function App() {
+  return (
+    <ThemeProvider>
+      <AppContent />
+    </ThemeProvider>
   );
 }

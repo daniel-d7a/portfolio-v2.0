@@ -1,0 +1,1 @@
+- [ ] fix the footer design (get in touch)

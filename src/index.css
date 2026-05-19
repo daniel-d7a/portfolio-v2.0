@@ -3,9 +3,10 @@
 /* Default variables for design tokens */
 :root {
   --bg-primary: #0c0a22;
-  --text-primary: #FEEAE3;
+  --text-primary: #f8ede9;
   --text-secondary: rgba(254, 234, 227, 0.8);
   --border-primary: rgba(254, 234, 227, 0.2);
+  --color-tertiary: #FF5A36;
 }
 
 /* Light mode overrides */
@@ -14,6 +15,7 @@
   --text-primary: #121212;
   --text-secondary: rgba(18, 18, 18, 0.7);
   --border-primary: rgba(18, 18, 18, 0.1);
+  --color-tertiary: #E03E22;
 }
 
 @theme {
@@ -21,6 +23,7 @@
   --color-brand-fg: var(--text-primary);
   --color-brand-muted: var(--text-secondary);
   --color-brand-border: var(--border-primary);
+  --color-brand-tertiary: var(--color-tertiary);
   --font-display: "Bricolage Grotesque", sans-serif;
   --font-body: "Roboto", sans-serif;
 }

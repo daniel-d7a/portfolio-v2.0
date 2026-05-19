@@ -1,6 +1,7 @@
-import { AnimatePresence, motion } from 'framer-motion';
-import { Moon, Sun } from 'lucide-react';
+import { AnimatePresence, motion, useScroll, useTransform } from 'framer-motion';
+import { ArrowUpRight, Moon, Sun } from 'lucide-react';
 import PORTFOLIO_CONFIG from '../portfolio.json';
+import { useTheme } from './ThemeContext';
 
 // ==========================================
 // 🧩 HEADER & LAYOUT COMPONENTS
@@ -85,23 +86,80 @@ export function ThemeButton({ name, isActive, onClick }: ThemeButtonProps) {
   );
 }
 
-export function Footer() {
+const STRIPE_OPACITIES = [
+  { dark: 'bg-gray-950/90', light: 'bg-white/25' },
+  { dark: 'bg-gray-950/80', light: 'bg-white/45' },
+  { dark: 'bg-gray-950/65', light: 'bg-white/65' },
+  { dark: 'bg-gray-950/45', light: 'bg-white/80' },
+  { dark: 'bg-gray-950/25', light: 'bg-white/90' },
+  { dark: 'bg-gray-950/45', light: 'bg-white/80' },
+  { dark: 'bg-gray-950/65', light: 'bg-white/65' },
+  { dark: 'bg-gray-950/80', light: 'bg-white/45' },
+  { dark: 'bg-gray-950/90', light: 'bg-white/25' },
+];
+
+export function Footer({ scrollTarget }: { scrollTarget: React.RefObject<HTMLDivElement | null> }) {
+  const { scrollYProgress } = useScroll({
+    target: scrollTarget || undefined,
+    offset: ["start end", "end end"]
+  });
+
+  const y = useTransform(scrollYProgress, [0, 1], [150, 0]);
+  const opacity = useTransform(scrollYProgress, [0, 1], [0.3, 1]);
+
+  const { isLight } = useTheme()
+
   return (
-    <footer className="px-6 md:px-12 py-12 border-t border-brand-border bg-brand-bg/50 backdrop-blur-sm transition-colors duration-500">
-      <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
-        <div className="text-xs md:text-sm font-mono opacity-60">
-          &copy; {new Date().getFullYear()} {PORTFOLIO_CONFIG.profile.logo} All Rights Reserved.
-        </div>
-        
+    <footer className="fixed bottom-0 left-0 w-full h-screen -z-10 bg-brand-fg text-brand-bg transition-colors duration-500 overflow-hidden flex flex-col justify-between pt-24 pb-8 px-6 md:px-12">
+      
+      {/* Background Vertical Stripes */}
+      <div className={`absolute inset-0 flex pointer-events-none z-0 ${!isLight && "opacity-80"}`}>
+        {STRIPE_OPACITIES.map((stripe, idx) => (
+          <div 
+            key={idx}
+            className={`flex-1 h-full ${!isLight ? stripe.dark : stripe.light}`} 
+          />
+        ))}
+      </div>
+
+      {/* Slogan & Action */}
+      <div className="w-full flex flex-col items-center justify-center grow text-center relative z-10">
+        <h2 className="text-4xl sm:text-6xl lg:text-7xl font-display font-bold mb-8 tracking-tight leading-tight text-brand-fg">
+          Let's build something great together.
+        </h2>
         <a
           href={`mailto:${PORTFOLIO_CONFIG.profile.email}`}
-          className="group text-sm font-bold tracking-widest uppercase flex items-center gap-2 hover:opacity-80"
+          className="text-brand-fg group relative inline-flex items-baseline text-3xl lg:text-4xl font-display font-black tracking-tight hover:opacity-85 transition-opacity z-10"
         >
-          LET'S WORK TOGETHER 
-          <span className="inline-block transition-transform duration-300 group-hover:translate-x-1">
-            →
+          <span className="">
+            Get In Touch.
+          </span>
+          <span className="inline-block transition-transform duration-300 group-hover:translate-x-2 group-hover:-translate-y-2 text-3xl lg:text-4xl font-light ml-3 select-none">
+            <ArrowUpRight />
           </span>
         </a>
+      </div>
+
+      {/* BIG NAME (SLIDING UP) */}
+      <div className="w-full flex justify-center overflow-hidden leading-none relative z-0 pb-4">
+        <motion.h1 
+          style={{ y, opacity }}
+          className="text-[12vw] sm:text-[10vw] lg:text-[14vw] font-display font-black tracking-tighter whitespace-nowrap leading-[0.75] select-none text-brand-fg"
+        >
+          {PORTFOLIO_CONFIG.profile.firstName} {PORTFOLIO_CONFIG.profile.lastName} <span className="text-brand-tertiary">.</span>
+
+        </motion.h1>
+      </div>
+
+      {/* Bottom Bar */}
+      <div className="w-full flex flex-col sm:flex-row items-center justify-between gap-4 py-6 border-t border-white/20 text-[10px] md:text-xs font-mono opacity-80 relative z-10 text-white">
+        <div>
+          &copy; {new Date().getFullYear()} {PORTFOLIO_CONFIG.profile.firstName} {PORTFOLIO_CONFIG.profile.lastName}
+        </div>
+        <div className="flex gap-8">
+          <a href="#" className="hover:opacity-70 transition-opacity">Portfolio</a>
+          <a href={`mailto:${PORTFOLIO_CONFIG.profile.email}`} className="hover:opacity-70 transition-opacity">Email</a>
+        </div>
       </div>
     </footer>
   );

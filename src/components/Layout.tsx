@@ -26,7 +26,9 @@ export function HeaderCol({ label, value, subValue, href, layoutId }: HeaderColP
               className="inline-block"
               transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
             >
-              {value}
+              <span className="mix-blend-difference text-white">
+                {value}
+              </span>
             </motion.div>
           ) : null
         ) : (

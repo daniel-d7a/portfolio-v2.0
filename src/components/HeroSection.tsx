@@ -36,12 +36,12 @@ export function Hero({ isScrolled }: { isScrolled: boolean }) {
                 />
             </div>
 
-            <div className="max-w-6xl mx-auto w-full flex flex-col justify-between grow relative pointer-events-none">
+            <div className="max-w-6xl mx-auto w-full flex flex-col justify-around sm:justify-between grow relative pointer-events-none">
                 <div className="w-full pointer-events-auto">
                     {!isScrolled && (
                         <motion.h1
                             layoutId="main-name"
-                            className="mix-blend-difference text-[12vw] sm:text-[14vw] font-body font-black tracking-tighter leading-[0.85] select-none text-white inline-block"
+                            className="mix-blend-difference text-[20vw] sm:text-[14vw] font-body font-black tracking-tighter leading-[0.85] select-none text-white inline-block"
                             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
                         >
                             <span>
@@ -53,13 +53,13 @@ export function Hero({ isScrolled }: { isScrolled: boolean }) {
                 </div>
 
                 <div className=" flex items-center justify-between mt-12 md:mt-24 border-t border-brand-border pt-6 pointer-events-auto">
-                    <p className="mix-blend-difference flex items-center gap-3 text-xs md:text-sm font-bold tracking-widest uppercase hover:opacity-85 transition-opacity group">
+                    <p className="mix-blend-difference text-white flex items-center gap-3 text-xs md:text-sm font-bold tracking-widest uppercase hover:opacity-85 transition-opacity group">
                         <span className="inline-block transition-transform duration-300 group-hover:translate-y-1">
                             ↓
                         </span>
                         SCROLL TO EXPLORE
                     </p>
-                    <span className="mix-blend-difference text-[10px] md:text-xs tracking-widest font-mono uppercase">
+                    <span className="mix-blend-difference text-white text-[10px] md:text-xs tracking-widest font-mono uppercase">
                         Designed for Impact &bull; Built with AI
                     </span>
                 </div>

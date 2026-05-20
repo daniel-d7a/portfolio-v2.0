@@ -33,7 +33,7 @@ export function ProjectItem({ id, slug, name, tags, }: ProjectItemProps) {
                     {tags.map((tag, idx) => (
                         <span
                             key={idx}
-                            className="text-[10px] uppercase tracking-wider px-2 py-1 rounded-full border border-brand-border"
+                            className="text-[8px] sm:text-[10px] uppercase tracking-wider px-2 py-1 rounded-full border border-brand-border"
                         >
                             {tag}
                         </span>

@@ -1,5 +1,7 @@
+import { createPortal } from 'react-dom';
 import { AnimatePresence, motion, useScroll, useSpring, useTransform } from 'framer-motion';
-import { ArrowUpRight, Moon, Sun } from 'lucide-react';
+import { ArrowUpRight, Moon, Sun, Menu, X } from 'lucide-react';
+import { useState, useEffect } from 'react';
 import PORTFOLIO_CONFIG from '../portfolio.json';
 import { useTheme } from './ThemeContext';
 
@@ -21,8 +23,8 @@ export function HeaderCol({ label, value, subValue, href, layoutId }: HeaderColP
       <div className="text-sm font-medium tracking-tight uppercase">
         {layoutId ? (
           value ? (
-            <motion.div 
-              layoutId={layoutId} 
+            <motion.div
+              layoutId={layoutId}
               className="inline-block"
               transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
             >
@@ -79,6 +81,113 @@ export function ThemeToggle({ isLight, toggle }: { isLight: boolean; toggle: () 
   );
 }
 
+export function MobileMenu() {
+  const [isOpen, setIsOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
+  const { isLight, toggleTheme } = useTheme();
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isOpen]);
+
+  if (!mounted) return null;
+
+  return (
+    <div className="md:hidden">
+      <button
+        onClick={() => setIsOpen(true)}
+        className="p-2 text-brand-fg focus:outline-none"
+        aria-label="Open menu"
+      >
+        <Menu size={24} />
+      </button>
+
+      {createPortal(
+        <AnimatePresence>
+          {isOpen && (
+            <motion.div
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+              className="fixed inset-0 z-200 bg-brand-bg flex flex-col p-8 overflow-y-auto"
+              style={{ backgroundColor: isLight ? '#F7F7F7' : '#131313' }}
+            >
+              <div className="flex justify-between items-center mb-8">
+                <h1 className="text-xl font-body tracking-tighter leading-[0.95] select-none text-brand-fg">
+                  <div className="block">{PORTFOLIO_CONFIG.profile.firstName}</div>
+                  <div className="block">{PORTFOLIO_CONFIG.profile.lastName}</div>
+                </h1>
+                <div className="flex items-center gap-4">
+                  <ThemeToggle isLight={isLight} toggle={toggleTheme} />
+                  <button
+                    onClick={() => setIsOpen(false)}
+                    className="p-2 text-brand-fg focus:outline-none cursor-pointer"
+                    aria-label="Close menu"
+                  >
+                    <X size={24} />
+                  </button>
+                </div>
+              </div>
+
+              <div className="flex flex-col gap-8 grow justify-center max-w-sm">
+                <div>
+                  <span className="block font-bold tracking-wider text-xs mb-4 opacity-70 font-mono text-brand-fg">ROLE</span>
+                  <div className="text-xl font-display font-black tracking-tighter leading-tight text-brand-fg">
+                    {PORTFOLIO_CONFIG.profile.role}
+                  </div>
+                </div>
+
+                <div>
+                  <span className="block font-bold tracking-wider text-xs mb-4 opacity-70 font-mono text-brand-fg">CONTACT</span>
+                  <a
+                    href={`mailto:${PORTFOLIO_CONFIG.profile.email}`}
+                    className="text-xl font-display font-bold hover:text-brand-tertiary transition-colors block mb-2 text-brand-fg"
+                  >
+                    {PORTFOLIO_CONFIG.profile.email}
+                  </a>
+                  <div className="text-lg font-display opacity-70 text-brand-fg">
+                    {PORTFOLIO_CONFIG.profile.phone}
+                  </div>
+                </div>
+
+                <div className="flex flex-col gap-4 pt-8 border-t border-brand-border">
+                  <span className="text-xs font-bold tracking-widest opacity-50 uppercase font-mono text-brand-fg">Socials</span>
+                  <div className="flex flex-wrap gap-6">
+                    {PORTFOLIO_CONFIG.profile.socials.map((social) => (
+                      <a
+                        key={social.name}
+                        href={social.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-lg font-display font-bold hover:text-brand-tertiary transition-colors text-brand-fg"
+                      >
+                        {social.name}
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>,
+        document.body
+      )}
+    </div>
+  );
+}
+
 export function Footer({ scrollTarget }: { scrollTarget: React.RefObject<HTMLDivElement | null> }) {
   const { scrollYProgress } = useScroll({
     target: scrollTarget || undefined,
@@ -97,7 +206,7 @@ export function Footer({ scrollTarget }: { scrollTarget: React.RefObject<HTMLDiv
   const { isLight } = useTheme()
 
   return (
-    <footer className="fixed bottom-0 left-0 w-full h-[50vh] bg-brand-fg text-brand-bg transition-colors duration-500 overflow-hidden flex flex-col justify-between pt-24 pb-8 px-6 md:px-12 pointer-events-none">
+    <footer className="fixed bottom-0 left-0 w-full h-[50vh] bg-brand-fg text-brand-bg transition-colors duration-500 overflow-hidden flex flex-col justify-between pt-24 pb-8 px-4 md:px-12 pointer-events-none">
       {/* Background Vertical Stripes */}
       <div className={`absolute inset-0 flex pointer-events-none z-0 ${!isLight && "opacity-80"}`}>
         {STRIPE_OPACITIES.map((stripe, idx) => (
@@ -109,7 +218,7 @@ export function Footer({ scrollTarget }: { scrollTarget: React.RefObject<HTMLDiv
       </div>
 
       {/* BIG NAME (SLIDING UP) - Now grows to take middle space */}
-      <div className="w-full flex flex-col justify-center grow overflow-hidden leading-none relative z-0 pb-4">
+      <div className="w-full flex flex-col justify-center grow overflow-hidden leading-none relative z-0 py-4">
         <motion.h1
           style={{ y, opacity }}
           className="text-[12vw] sm:text-[10vw] lg:text-[14vw] font-display font-black tracking-tighter whitespace-nowrap leading-[0.75] select-none text-brand-fg text-center"
@@ -160,7 +269,7 @@ export function ContactSection() {
                 <ArrowUpRight size={24} />
               </span>
             </a>
-            <p className="text-xs opacity-60 max-w-[200px] leading-relaxed">
+            <p className="text-xs opacity-60 max-w-50 leading-relaxed">
               Available for new projects. Let's chat on WhatsApp.
             </p>
           </div>

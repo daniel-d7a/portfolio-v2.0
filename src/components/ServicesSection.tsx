@@ -172,90 +172,61 @@ export function ServiceItem({ id, name, description, image, tags }: ServiceItemP
                 </div>
 
                 {/* Mobile Layout */}
-                <div className="md:hidden flex flex-col gap-4">
-                    <div className="flex items-center justify-between">
+                <div className="md:hidden flex flex-col">
+                    <div className="flex items-center justify-between pb-4">
                         <motion.div
-                            animate={{ scale: isHovered ? 1.15 : 1 }}
-                            transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                            animate={{ scale: isHovered ? 1.1 : 1 }}
+                            transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
                             style={{ originX: 0, originY: 0.5 }}
                             className="text-3xl font-display font-bold text-brand-fg/30"
                         >
                             {id}<span className="text-brand-tertiary">.</span>
                         </motion.div>
 
-                        <AnimatePresence mode="wait">
-                            {!isHovered ? (
-                                <motion.h3
-                                    key="mobile-title"
-                                    initial={{ opacity: 0 }}
-                                    animate={{ opacity: 1 }}
-                                    exit={{ opacity: 0 }}
-                                    transition={{ duration: 0.2 }}
-                                    className="text-lg font-display font-medium text-brand-fg/75 text-right grow pl-4"
-                                >
-                                    {name}
-                                </motion.h3>
-                            ) : null}
-                        </AnimatePresence>
+                        <motion.h3
+                            initial={false}
+                            animate={{ opacity: isHovered ? 0 : 1, x: isHovered ? 10 : 0 }}
+                            className="text-lg font-display font-medium text-brand-fg/75 text-right grow pl-4"
+                        >
+                            {name}
+                        </motion.h3>
                     </div>
 
-                    <AnimatePresence initial={false}>
-                        {isHovered && (
-                            <motion.div
-                                initial={{ height: 0, opacity: 0 }}
-                                animate={{ height: 'auto', opacity: 1 }}
-                                exit={{ height: 0, opacity: 0 }}
-                                transition={{ duration: 0.3, ease: 'easeInOut' }}
-                                className="overflow-hidden"
-                            >
-                                <motion.div
-                                    variants={detailsContainerVariants}
-                                    initial="hidden"
-                                    animate="visible"
-                                    exit="exit"
-                                    className="flex flex-col gap-4 pt-2 pb-4"
-                                >
-                                    <motion.h3
-                                        variants={itemVariants}
-                                        className="text-2xl font-display font-bold text-brand-fg"
+                    <motion.div
+                        initial={false}
+                        animate={{ 
+                            height: isHovered ? 'auto' : 0,
+                            opacity: isHovered ? 1 : 0
+                        }}
+                        transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                        className="overflow-hidden"
+                    >
+                        <div className="flex flex-col gap-4 pb-6">
+                            <h3 className="text-2xl font-display font-bold text-brand-fg">
+                                {name}
+                            </h3>
+                            <div className="w-full aspect-video rounded-xl overflow-hidden border border-brand-border bg-brand-fg/5 relative">
+                                <img
+                                    src={image}
+                                    alt={name}
+                                    className="w-full h-full object-cover"
+                                />
+                            </div>
+                            <p className="text-sm text-brand-muted font-light leading-relaxed">
+                                {description}
+                            </p>
+                            <div className="flex flex-wrap gap-2">
+                                {tags.map((tag, idx) => (
+                                    <span
+                                        key={idx}
+                                        className="text-[9px] font-mono uppercase tracking-wider px-2.5 py-1 rounded-full border border-brand-border text-brand-fg/80"
                                     >
-                                        {name}
-                                    </motion.h3>
-                                    <motion.div
-                                        variants={itemVariants}
-                                        className="w-full h-50 rounded-xl overflow-hidden border border-brand-border"
-                                    >
-                                        <img
-                                            src={image}
-                                            alt={name}
-                                            className="w-full h-full object-cover"
-                                        />
-                                    </motion.div>
-                                    <p className="text-sm text-brand-muted font-light leading-relaxed">
-                                        {description}
-                                    </p>
-                                    <motion.div
-                                        variants={itemVariants}
-                                    >
-                                        <motion.div
-                                            variants={tagContainerVariants}
-                                            className="flex flex-wrap gap-2"
-                                        >
-                                            {tags.map((tag, idx) => (
-                                                <motion.span
-                                                    key={idx}
-                                                    variants={tagVariants}
-                                                    className="text-[9px] font-mono uppercase tracking-wider px-2.5 py-1 rounded-full border border-brand-border text-brand-fg/80"
-                                                >
-                                                    {tag}
-                                                </motion.span>
-                                            ))}
-                                        </motion.div>
-                                    </motion.div>
-                                </motion.div>
-                            </motion.div>
-                        )}
-                    </AnimatePresence>
+                                        {tag}
+                                    </span>
+                                ))}
+                            </div>
+                        </div>
+                    </motion.div>
                 </div>
             </div>
         </motion.div>

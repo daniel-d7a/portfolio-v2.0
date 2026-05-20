@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence, motion, useScroll, useMotionValueEvent } from 'framer-motion';
-import { Footer, HeaderCol, ThemeToggle, ContactSection, BottomBlur } from './components/Layout';
+import { Footer, HeaderCol, ThemeToggle, MobileMenu, ContactSection, BottomBlur } from './components/Layout';
 import PORTFOLIO_CONFIG from './portfolio.json';
 import { ThemeProvider, useTheme } from './components/ThemeContext';
 import { Hero } from './components/HeroSection';
@@ -87,31 +87,38 @@ function AppContent() {
       <ScrollToTop />
       <div className="relative z-10 bg-brand-bg text-brand-fg transition-colors duration-500 min-h-screen shadow-[0_20px_50px_rgba(0,0,0,0.5)] flex flex-col">
         {/* HEADER SECTION */}
-        <header className="px-6 md:px-12 py-8 border-b border-brand-border sticky top-0 z-50 bg-brand-bg/80 backdrop-blur-md transition-colors duration-500">
-          <div className="max-w-6xl mx-auto flex flex-col md:flex-row md:items-start justify-between gap-8 md:gap-4">
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-6 md:gap-16">
-              <HeaderCol
-                value={(!isHomePage || isScrolled) ? <>
-                  <h1
-                    className="text-xl font-body tracking-tighter leading-[0.95] select-none text-brand-fg inline-block"
-                  >
-                    <div className="block">{PORTFOLIO_CONFIG.profile.firstName}</div>
-                    <div className="block">{PORTFOLIO_CONFIG.profile.lastName}</div>
-                  </h1>
-                </> : ""}
-                layoutId="main-name"
-              />
-              <HeaderCol label="ROLE" value={PORTFOLIO_CONFIG.profile.role} />
-              <HeaderCol
-                label="CONTACT"
-                value={PORTFOLIO_CONFIG.profile.email}
-                subValue={PORTFOLIO_CONFIG.profile.phone}
-                href={`mailto:${PORTFOLIO_CONFIG.profile.email}`}
-              />
+        <header className="px-6 md:px-12 py-4 md:py-8 border-b border-brand-border sticky top-0 z-50 bg-brand-bg/80 backdrop-blur-md transition-colors duration-500">
+          <div className="max-w-6xl mx-auto flex items-center justify-between md:items-start gap-4">
+            <div className="flex-1 md:flex-initial">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-16">
+                <HeaderCol
+                  value={(!isHomePage || isScrolled) ? <>
+                    <h1
+                      className="text-xl font-body tracking-tighter leading-[0.95] select-none text-brand-fg inline-block"
+                    >
+                      <div className="block">{PORTFOLIO_CONFIG.profile.firstName}</div>
+                      <div className="block">{PORTFOLIO_CONFIG.profile.lastName}</div>
+                    </h1>
+                  </> : ""}
+                  layoutId="main-name"
+                />
+                <div className="hidden md:block">
+                  <HeaderCol label="ROLE" value={PORTFOLIO_CONFIG.profile.role} />
+                </div>
+                <div className="hidden md:block">
+                  <HeaderCol
+                    label="CONTACT"
+                    value={PORTFOLIO_CONFIG.profile.email}
+                    subValue={PORTFOLIO_CONFIG.profile.phone}
+                    href={`mailto:${PORTFOLIO_CONFIG.profile.email}`}
+                  />
+                </div>
+              </div>
             </div>
 
-            <div className="flex items-center gap-4 self-start md:self-auto">
+            <div className="flex items-center gap-2 md:gap-4">
               <ThemeToggle isLight={isLight} toggle={toggleTheme} />
+              <MobileMenu />
             </div>
           </div>
         </header>

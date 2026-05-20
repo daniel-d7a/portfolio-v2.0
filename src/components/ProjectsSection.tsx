@@ -1,21 +1,24 @@
+import { Link } from 'react-router-dom';
 import PORTFOLIO_CONFIG from '../portfolio.json';
 import { VelocityMarquee } from './VelocityMarquee';
+import { setCursorMode } from './CustomCursor';
 
 interface ProjectItemProps {
     id: string;
+    slug: string;
     name: string;
     tags: string[];
 }
 
-export function ProjectItem({ id, name, tags, }: ProjectItemProps) {
+export function ProjectItem({ id, slug, name, tags, }: ProjectItemProps) {
     return (
-        <div
+        <Link
+            to={`/project/${slug}`}
+            viewTransition
+            onMouseEnter={() => setCursorMode('view')}
+            onMouseLeave={() => setCursorMode('default')}
             className="group relative border-b border-brand-border py-8 md:py-12 flex flex-col md:flex-row md:items-center justify-between cursor-pointer transition-all duration-500 hover:pl-4"
         >
-            {/* <div
-        className="absolute inset-0 bg-brand-fg/5 scale-y-0 group-hover:scale-y-100 origin-bottom transition-transform duration-500 ease-out -z-10 rounded-lg"
-      /> */}
-
             <div className="flex items-center gap-6 md:gap-12">
                 <span className="text-xs md:text-sm font-body tracking-widest opacity-60">
                     {id}
@@ -40,7 +43,7 @@ export function ProjectItem({ id, name, tags, }: ProjectItemProps) {
                     →
                 </span>
             </div>
-        </div>
+        </Link>
     );
 }
 
@@ -55,6 +58,7 @@ export function Projects() {
                         <ProjectItem
                             key={proj.id}
                             id={proj.id}
+                            slug={proj.slug}
                             name={proj.name}
                             tags={proj.tags}
                         />

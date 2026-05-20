@@ -75,7 +75,7 @@ export function ServiceItem({ id, name, description, image, tags }: ServiceItemP
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
             onClick={() => setIsHovered(!isHovered)}
-            className="group relative border-b border-brand-border py-8 md:py-12 cursor-pointer transition-colors duration-500 hover:bg-brand-fg/1"
+            className="group relative border-b border-brand-border py-8 md:py-12 transition-colors duration-500 hover:bg-brand-fg/1"
         >
             <div className="max-w-6xl mx-auto px-6 md:px-12">
                 {/* Desktop Layout */}

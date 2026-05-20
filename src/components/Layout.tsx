@@ -119,22 +119,58 @@ export function Footer({ scrollTarget }: { scrollTarget: React.RefObject<HTMLDiv
 export function ContactSection() {
   return (
     <section className="w-full py-24 md:py-36 px-6 md:px-12">
-      <div className="max-w-6xl mx-auto flex flex-col items-center justify-center text-center">
-        <h2 className="text-4xl sm:text-6xl lg:text-7xl font-display font-bold mb-8 tracking-tight leading-tight text-brand-fg">
-          Let's build something great together.
-        </h2>
-        <a
-          href={`mailto:${PORTFOLIO_CONFIG.profile.email}`}
-          className="text-brand-fg group relative inline-flex items-baseline text-3xl lg:text-4xl font-display font-black tracking-tight hover:opacity-85 transition-opacity pb-1"
-        >
-          <span className="relative">
-            Get In Touch.
-            <span className="absolute bottom-0 left-0 w-full h-1 bg-brand-fg origin-left scale-x-0 transition-transform duration-300 group-hover:scale-x-100" />
-          </span>
-          <span className="inline-block transition-transform duration-300 group-hover:translate-x-2 group-hover:-translate-y-2 text-3xl lg:text-4xl font-light ml-3 select-none">
-            <ArrowUpRight />
-          </span>
-        </a>
+      <div className="max-w-6xl mx-auto">
+        <div className="flex flex-col items-center justify-center text-center mb-20">
+          <h2 className="text-4xl sm:text-6xl lg:text-8xl font-display font-bold mb-4 tracking-tighter leading-tight text-brand-fg">
+            Let's build something great together.
+          </h2>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8 items-start">
+          {/* Column 1: WhatsApp Contact */}
+          <div className="flex flex-col items-start gap-4">
+            <span className="text-xs font-bold tracking-widest opacity-50 uppercase font-mono">Contact Me</span>
+            <a
+              href={`https://wa.me/${PORTFOLIO_CONFIG.profile.whatsapp}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-brand-fg group relative inline-flex items-baseline text-2xl lg:text-3xl font-display font-black tracking-tight hover:opacity-85 transition-opacity pb-1"
+            >
+              <span className="relative">
+                Get In Touch.
+                <span className="absolute bottom-0 left-0 w-full h-1 bg-brand-fg origin-left scale-x-0 transition-transform duration-300 group-hover:scale-x-100" />
+              </span>
+              <span className="inline-block transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1 text-2xl ml-2">
+                <ArrowUpRight size={24} />
+              </span>
+            </a>
+            <p className="text-xs opacity-60 max-w-[200px] leading-relaxed">
+              Available for new projects. Let's chat on WhatsApp.
+            </p>
+          </div>
+
+          {/* Column 2: Empty/Middle Space */}
+          <div className="hidden md:block"></div>
+
+          {/* Column 3: Socials */}
+          <div className="flex flex-col md:items-end gap-6">
+            <span className="text-xs font-bold tracking-widest opacity-50 uppercase font-mono">Socials</span>
+            <div className="flex flex-col md:items-end gap-3">
+              {PORTFOLIO_CONFIG.profile.socials.map((social) => (
+                <a
+                  key={social.name}
+                  href={social.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-lg font-display font-bold hover:text-brand-tertiary transition-colors flex items-center gap-2 group"
+                >
+                  {social.name}
+                  <ArrowUpRight size={16} className="opacity-0 group-hover:opacity-100 transition-opacity" />
+                </a>
+              ))}
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );

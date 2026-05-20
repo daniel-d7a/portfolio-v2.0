@@ -9,6 +9,27 @@
   --color-tertiary: #FF5A36;
 }
 
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
+
 /* Light mode overrides */
 .light {
   --bg-primary: #F7F7F7;
@@ -36,6 +57,12 @@ body {
   font-family: var(--font-body);
   transition: background-color 0.5s ease, color 0.5s ease;
   overflow-x: hidden;
+}
+
+@media (pointer: fine) {
+  body, a, button, [role="button"] {
+    cursor: none !important;
+  }
 }
 
 /* Ensure the wrapper also respects the background variable */

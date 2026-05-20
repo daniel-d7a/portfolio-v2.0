@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, type Variants } from 'framer-motion';
 import PORTFOLIO_CONFIG from '../portfolio.json';
 import { VelocityMarquee } from './VelocityMarquee';
 
@@ -27,7 +27,7 @@ const detailsContainerVariants = {
     }
 };
 
-const itemVariants = {
+const itemVariants: Variants = {
     hidden: { opacity: 0, y: 15 },
     visible: {
         opacity: 1,

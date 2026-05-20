@@ -119,7 +119,7 @@ export function Footer({ scrollTarget }: { scrollTarget: React.RefObject<HTMLDiv
       </div>
 
       {/* Bottom Bar */}
-      <div className="w-full flex flex-col sm:flex-row items-center justify-between gap-4 py-6 border-t border-white/20 text-[10px] md:text-xs font-mono opacity-80 relative z-10 text-brand-fg pointer-events-auto">
+      <div className="w-full flex flex-col sm:flex-row items-center justify-between gap-4 py-6 border-t border-white/20 text-[10px] md:text-xs font-mono opacity-80 relative z-10 text-brand-fg pointer-events-auto mb-10">
         <div>
           &copy; {new Date().getFullYear()} {PORTFOLIO_CONFIG.profile.firstName} {PORTFOLIO_CONFIG.profile.lastName}
         </div>
@@ -193,11 +193,36 @@ export function ContactSection() {
 }
 
 export function BottomBlur() {
+  const layers = [
+    { blur: 0.234375, start: 0.0, m1: 12.5, m2: 25.0, end: 37.5 },
+    { blur: 0.46875, start: 12.5, m1: 25.0, m2: 37.5, end: 50.0 },
+    { blur: 0.9375, start: 25.0, m1: 37.5, m2: 50.0, end: 62.5 },
+    { blur: 1.875, start: 37.5, m1: 50.0, m2: 62.5, end: 75.0 },
+    { blur: 3.75, start: 50.0, m1: 62.5, m2: 75.0, end: 87.5 },
+    { blur: 7.5, start: 62.5, m1: 75.0, m2: 87.5, end: 100.0 },
+    { blur: 15, start: 75.0, m1: 87.5, m2: 100.0, end: 112.5 },
+    { blur: 30, start: 87.5, m1: 100.0, m2: 112.5, end: 125.0 },
+  ];
+
   return (
     <div
-      className="fixed bottom-0 left-0 w-full h-32 pointer-events-none z-100 backdrop-blur-md mask-[linear-gradient(to_top,black,transparent)]"
+      className="fixed bottom-0 left-0 w-full h-36 pointer-events-none z-100"
       aria-hidden="true"
-    />
+    >
+      {layers.map((layer, idx) => (
+        <div
+          key={idx}
+          className="absolute inset-0"
+          style={{
+            zIndex: idx + 1,
+            backdropFilter: `blur(${layer.blur}px)`,
+            WebkitBackdropFilter: `blur(${layer.blur}px)`,
+            maskImage: `linear-gradient(to bottom, rgba(0,0,0,0) ${layer.start}%, rgba(0,0,0,1) ${layer.m1}%, rgba(0,0,0,1) ${layer.m2}%, rgba(0,0,0,0) ${layer.end}%)`,
+            WebkitMaskImage: `linear-gradient(to bottom, rgba(0,0,0,0) ${layer.start}%, rgba(0,0,0,1) ${layer.m1}%, rgba(0,0,0,1) ${layer.m2}%, rgba(0,0,0,0) ${layer.end}%)`,
+          }}
+        />
+      ))}
+    </div>
   );
 }
 

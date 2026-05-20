@@ -8,9 +8,22 @@
     "phone": "+201551937083",
     "whatsapp": "201551937083",
     "socials": [
-      { "name": "LinkedIn", "url": "https://linkedin.com/in/eyad-alsherif" },
-      { "name": "GitHub", "url": "https://github.com/eyadalsherif" },
-      { "name": "Instagram", "url": "https://instagram.com/eyadalsherif" }
+      {
+        "name": "Twitter",
+        "url": "https://x.com/Daniel_d7a_76"
+      },
+      {
+        "name": "GitHub",
+        "url": "https://github.com/daniel-d7a"
+      },
+      {
+        "name": "Instagram",
+        "url": "https://www.instagram.com/eyadooo_76/"
+      },
+      {
+        "name": "LinkedIn",
+        "url": "https://www.linkedin.com/in/eyad-alsherif-741177216/"
+      }
     ]
   },
   "bio": {
@@ -30,51 +43,54 @@
       ],
       "description": "A comprehensive e-commerce solution designed for modern retailers. Featuring lightning-fast performance, real-time inventory management, and a seamless checkout experience.",
       "content": "Tajer Platform was built with a focus on scalability and user experience. We leveraged Next.js for server-side rendering to ensure optimal SEO and performance. The backend, powered by Node.js, handles complex business logic and integrations with multiple payment gateways. The result is a robust platform that scales with the business.",
-      "image": "/images/service_web_design.png"
+      "stack": [
+        "React",
+        "Next.js",
+        "Node.js",
+        "Hono",
+        "cloudflare"
+      ],
+      "type": "E-commerce",
+      "images": [
+        "/images/projects/tajer/1.png",
+        "/images/projects/tajer/2.png",
+        "/images/projects/tajer/3.png",
+        "/images/projects/tajer/4.png"
+      ],
+      "livePreviewLink": "https://tajer-platform-user.eyadabdou862.workers.dev/en"
     },
     {
       "id": "02",
-      "slug": "project-two",
-      "name": "Project Two",
+      "slug": "ocd",
+      "name": "OCD Landing Page",
       "tags": [
-        "Brand Identity",
-        "UX Writing"
+        "Landing Page",
+        "Animation",
+        "React"
       ],
-      "description": "Defining the voice and visual language for a tech startup. We created a cohesive brand identity that resonates with their target audience.",
-      "content": "This project involved deep research into the target demographic and competitive landscape. We developed a unique visual system and a comprehensive brand guide. The UX writing focus ensured that every touchpoint in the product was clear, helpful, and on-brand.",
-      "image": "/images/service_branding.png"
-    },
-    {
-      "id": "03",
-      "slug": "project-three",
-      "name": "Project Three",
-      "tags": [
-        "Content Strategy",
-        "SEO"
+      "description": "A landing page for a marketing agency named OCD. The page is designed with a focus on user experience and features advanced animations and interactions.",
+      "content": "I designed and developed a new landing page for OCD, a marketing agency. The page is designed with a focus on user experience and features advanced animations and interactions. I used React and TailwindCSS to create a modern and responsive design. I also used Framer Motion to create a seamless and interactive experience. The page is designed to be a showcase of the agency's work and to attract new clients.",
+      "stack": [
+        "React",
+        "Framer Motion",
+        "Tailwind CSS"
       ],
-      "description": "Increasing organic reach through data-driven content strategy and technical SEO optimizations.",
-      "content": "By analyzing search trends and user behavior, we crafted a content roadmap that positioned the client as an authority in their niche. Technical SEO audits and fixes improved crawlability and indexation, leading to a 150% increase in organic traffic within six months.",
-      "image": "/images/service_social_media.png"
-    },
-    {
-      "id": "04",
-      "slug": "project-four",
-      "name": "Project Four",
-      "tags": [
-        "Digital Campaign",
-        "Copywriting"
+      "type": "Landing Page",
+      "images": [
+        "/images/projects/ocd/1.png",
+        "/images/projects/ocd/2.png",
+        "/images/projects/ocd/3.png",
+        "/images/projects/ocd/4.png"
       ],
-      "description": "A high-impact digital campaign that drove conversion and engagement across multiple platforms.",
-      "content": "The campaign focused on storytelling and emotional connection. High-quality copy and creative assets were deployed across social media, email, and display ads. A/B testing allowed us to optimize performance in real-time, exceeding all KPI targets.",
-      "image": "/images/service_web_design.png"
+      "livePreviewLink": "https://ocd-new-landing-page.vercel.app/"
     }
   ],
   "services": [
     {
       "id": "01",
-      "name": "Web Design & Development",
-      "description": "Crafting high-performance websites with clean structures and seamless experiences.",
-      "image": "/images/service_web_design.png",
+      "name": "Landing Pages",
+      "description": "Crafting high-performance landing pages with attractive UI and seamless experiences.",
+      "image": "/images/services/landing page.png",
       "tags": [
         "React/Next.js",
         "TailwindCSS",
@@ -84,26 +100,38 @@
     },
     {
       "id": "02",
-      "name": "Branding",
-      "description": "Crafting visual identities that feel clear, timeless, and true to your brand.",
-      "image": "/images/service_branding.png",
+      "name": "Backend & API Architecture",
+      "description": "Building robust, scalable server-side systems and secure REST/GraphQL APIs.",
+      "image": "/images/services/backend.png",
       "tags": [
-        "Logo Design",
-        "Color System",
-        "Typography",
-        "Brand Direction"
+        "Node.js",
+        "Hono",
+        "PostgreSQL",
+        "Cloudflare Workers"
       ]
     },
     {
       "id": "03",
-      "name": "Social Media",
-      "description": "Creating visually engaging campaigns and designs to amplify your brand presence.",
-      "image": "/images/service_social_media.png",
+      "name": "E-commerce Solutions",
+      "description": "End-to-end online stores with seamless payments and inventory management.",
+      "image": "/images/services/e-commerce.png",
       "tags": [
-        "Content Strategy",
-        "Visual Assets",
-        "Campaign Design",
-        "Analytics"
+        "Next.js",
+        "Stripe",
+        "Drizzle ORM",
+        "User Auth"
+      ]
+    },
+    {
+      "id": "04",
+      "name": "SaaS Development",
+      "description": "Transforming ideas into full-scale software products with multi-tenant architectures.",
+      "image": "/images/services/saas.png",
+      "tags": [
+        "Full-stack",
+        "TypeScript",
+        "Database Design",
+        "Deployment"
       ]
     }
   ]

@@ -15,12 +15,12 @@
   "projects": [
     {
       "id": "01",
-      "name": "Project One",
+      "name": "Tajer Platform",
       "tags": [
-        "Editorial",
-        "Creative Copy"
-      ],
-      "year": "2026"
+        "E-commerce",
+        "Next.js",
+        "Node.js"
+      ]
     },
     {
       "id": "02",
@@ -28,8 +28,7 @@
       "tags": [
         "Brand Identity",
         "UX Writing"
-      ],
-      "year": "2025"
+      ]
     },
     {
       "id": "03",
@@ -37,8 +36,7 @@
       "tags": [
         "Content Strategy",
         "SEO"
-      ],
-      "year": "2025"
+      ]
     },
     {
       "id": "04",
@@ -46,8 +44,45 @@
       "tags": [
         "Digital Campaign",
         "Copywriting"
-      ],
-      "year": "2024"
+      ]
+    }
+  ],
+  "services": [
+    {
+      "id": "01",
+      "name": "Web Design & Development",
+      "description": "Crafting high-performance websites with clean structures and seamless experiences.",
+      "image": "/images/service_web_design.png",
+      "tags": [
+        "React/Next.js",
+        "TailwindCSS",
+        "Framer Motion",
+        "SEO & Performance"
+      ]
+    },
+    {
+      "id": "02",
+      "name": "Branding",
+      "description": "Crafting visual identities that feel clear, timeless, and true to your brand.",
+      "image": "/images/service_branding.png",
+      "tags": [
+        "Logo Design",
+        "Color System",
+        "Typography",
+        "Brand Direction"
+      ]
+    },
+    {
+      "id": "03",
+      "name": "Social Media",
+      "description": "Creating visually engaging campaigns and designs to amplify your brand presence.",
+      "image": "/images/service_social_media.png",
+      "tags": [
+        "Content Strategy",
+        "Visual Assets",
+        "Campaign Design",
+        "Analytics"
+      ]
     }
   ]
 }

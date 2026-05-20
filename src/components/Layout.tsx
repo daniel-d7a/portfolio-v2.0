@@ -7,6 +7,34 @@ import { useTheme } from './ThemeContext';
 // 🧩 HEADER & LAYOUT COMPONENTS
 // ==========================================
 
+interface HeaderColProps {
+  label: string;
+  value: string;
+  subValue?: string;
+  href?: string;
+}
+
+export function HeaderCol({ label, value, subValue, href }: HeaderColProps) {
+  const content = (
+    <>
+      <span className="block font-bold tracking-wider text-xs mb-1 opacity-70">{label}</span>
+      <span className="block text-sm font-medium tracking-tight uppercase">{value}</span>
+      {subValue && <span className="block text-xs uppercase opacity-70 mt-0.5">{subValue}</span>}
+    </>
+  );
+  return (
+    <div className="text-left font-display">
+      {href ? (
+        <a href={href} className="hover:opacity-80 transition-opacity">
+          {content}
+        </a>
+      ) : (
+        content
+      )}
+    </div>
+  );
+}
+
 export function ThemeToggle({ isLight, toggle }: { isLight: boolean; toggle: () => void }) {
   return (
     <button
@@ -35,69 +63,6 @@ export function ThemeToggle({ isLight, toggle }: { isLight: boolean; toggle: () 
   );
 }
 
-interface HeaderColProps {
-  label: string;
-  value: string;
-  subValue?: string;
-  href?: string;
-}
-
-export function HeaderCol({ label, value, subValue, href }: HeaderColProps) {
-  const content = (
-    <>
-      <span className="block font-bold tracking-wider text-xs mb-1 opacity-70">{label}</span>
-      <span className="block text-sm font-medium tracking-tight uppercase">{value}</span>
-      {subValue && <span className="block text-xs uppercase opacity-70 mt-0.5">{subValue}</span>}
-    </>
-  );
-
-  return (
-    <div className="text-left font-display">
-      {href ? (
-        <a href={href} className="hover:opacity-80 transition-opacity">
-          {content}
-        </a>
-      ) : (
-        content
-      )}
-    </div>
-  );
-}
-
-interface ThemeButtonProps {
-  id: string;
-  name: string;
-  isActive: boolean;
-  onClick: () => void;
-}
-
-export function ThemeButton({ name, isActive, onClick }: ThemeButtonProps) {
-  return (
-    <button
-      onClick={onClick}
-      className={`text-xs font-bold tracking-widest px-3 py-1.5 rounded transition-all duration-300 ${
-        isActive
-          ? 'bg-brand-fg text-brand-bg shadow-lg scale-105'
-          : 'text-brand-fg opacity-65 hover:opacity-100 hover:scale-102'
-      }`}
-    >
-      {name}
-    </button>
-  );
-}
-
-const STRIPE_OPACITIES = [
-  { dark: 'bg-gray-950/90', light: 'bg-white/25' },
-  { dark: 'bg-gray-950/80', light: 'bg-white/45' },
-  { dark: 'bg-gray-950/65', light: 'bg-white/65' },
-  { dark: 'bg-gray-950/45', light: 'bg-white/80' },
-  { dark: 'bg-gray-950/25', light: 'bg-white/90' },
-  { dark: 'bg-gray-950/45', light: 'bg-white/80' },
-  { dark: 'bg-gray-950/65', light: 'bg-white/65' },
-  { dark: 'bg-gray-950/80', light: 'bg-white/45' },
-  { dark: 'bg-gray-950/90', light: 'bg-white/25' },
-];
-
 export function Footer({ scrollTarget }: { scrollTarget: React.RefObject<HTMLDivElement | null> }) {
   const { scrollYProgress } = useScroll({
     target: scrollTarget || undefined,
@@ -111,13 +76,12 @@ export function Footer({ scrollTarget }: { scrollTarget: React.RefObject<HTMLDiv
 
   return (
     <footer className="fixed bottom-0 left-0 w-full h-screen bg-brand-fg text-brand-bg transition-colors duration-500 overflow-hidden flex flex-col justify-between pt-24 pb-8 px-6 md:px-12 pointer-events-none">
-      
       {/* Background Vertical Stripes */}
       <div className={`absolute inset-0 flex pointer-events-none z-0 ${!isLight && "opacity-80"}`}>
         {STRIPE_OPACITIES.map((stripe, idx) => (
-          <div 
+          <div
             key={idx}
-            className={`flex-1 h-full ${!isLight ? stripe.dark : stripe.light}`} 
+            className={`flex-1 h-full ${!isLight ? stripe.dark : stripe.light}`}
           />
         ))}
       </div>
@@ -143,7 +107,7 @@ export function Footer({ scrollTarget }: { scrollTarget: React.RefObject<HTMLDiv
 
       {/* BIG NAME (SLIDING UP) */}
       <div className="w-full flex justify-center overflow-hidden leading-none relative z-0 pb-4">
-        <motion.h1 
+        <motion.h1
           style={{ y, opacity }}
           className="text-[12vw] sm:text-[10vw] lg:text-[14vw] font-display font-black tracking-tighter whitespace-nowrap leading-[0.75] select-none text-brand-fg"
         >
@@ -165,3 +129,15 @@ export function Footer({ scrollTarget }: { scrollTarget: React.RefObject<HTMLDiv
     </footer>
   );
 }
+
+const STRIPE_OPACITIES = [
+  { dark: 'bg-brand-bg/90', light: 'bg-white/25' },
+  { dark: 'bg-brand-bg/80', light: 'bg-white/45' },
+  { dark: 'bg-brand-bg/65', light: 'bg-white/65' },
+  { dark: 'bg-brand-bg/45', light: 'bg-white/80' },
+  { dark: 'bg-brand-bg/25', light: 'bg-white/90' },
+  { dark: 'bg-brand-bg/45', light: 'bg-white/80' },
+  { dark: 'bg-brand-bg/65', light: 'bg-white/65' },
+  { dark: 'bg-brand-bg/80', light: 'bg-white/45' },
+  { dark: 'bg-brand-bg/90', light: 'bg-white/25' },
+];

@@ -3,27 +3,41 @@ import { ArrowUpRight, Moon, Sun } from 'lucide-react';
 import PORTFOLIO_CONFIG from '../portfolio.json';
 import { useTheme } from './ThemeContext';
 
-// ==========================================
-// 🧩 HEADER & LAYOUT COMPONENTS
-// ==========================================
 
 interface HeaderColProps {
-  label: string;
-  value: string;
+  label?: string;
+  value: React.ReactNode;
   subValue?: string;
   href?: string;
+  layoutId?: string;
 }
 
-export function HeaderCol({ label, value, subValue, href }: HeaderColProps) {
+export function HeaderCol({ label, value, subValue, href, layoutId }: HeaderColProps) {
   const content = (
-    <>
-      <span className="block font-bold tracking-wider text-xs mb-1 opacity-70">{label}</span>
-      <span className="block text-sm font-medium tracking-tight uppercase">{value}</span>
+    <div>
+      {label &&
+        <span className="block font-bold tracking-wider text-xs mb-1 opacity-70">{label}</span>
+      }
+      <div className="text-sm font-medium tracking-tight uppercase">
+        {layoutId ? (
+          value ? (
+            <motion.div 
+              layoutId={layoutId} 
+              className="inline-block"
+              transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+            >
+              {value}
+            </motion.div>
+          ) : null
+        ) : (
+          value
+        )}
+      </div>
       {subValue && <span className="block text-xs uppercase opacity-70 mt-0.5">{subValue}</span>}
-    </>
+    </div>
   );
   return (
-    <div className="text-left font-display">
+    <div className="text-left font-display flex items-start">
       {href ? (
         <a href={href} className="hover:opacity-80 transition-opacity">
           {content}
@@ -118,7 +132,7 @@ export function Footer({ scrollTarget }: { scrollTarget: React.RefObject<HTMLDiv
 
 export function ContactSection() {
   return (
-    <section className="w-full py-24 md:py-36 px-6 md:px-12">
+    <section className="w-full py-16 px-6 md:px-12">
       <div className="max-w-6xl mx-auto">
         <div className="flex flex-col items-center justify-center text-center mb-20">
           <h2 className="text-4xl sm:text-6xl lg:text-8xl font-display font-bold mb-4 tracking-tighter leading-tight text-brand-fg">

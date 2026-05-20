@@ -1,11 +1,13 @@
 import { useEffect, useState, useRef } from 'react';
 import { motion, useMotionValue, useSpring, AnimatePresence } from 'framer-motion';
 import { ArrowUpRight } from 'lucide-react';
+import { useLocation } from 'react-router-dom';
 
 export function CustomCursor() {
   const [cursorType, setCursorType] = useState<'default' | 'hover' | 'view'>('default');
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
+  const { pathname } = useLocation();
 
   // Track if we are in a manually triggered mode (like 'view' for projects)
   const manualModeRef = useRef<'default' | 'view'>('default');
@@ -13,6 +15,12 @@ export function CustomCursor() {
   const springConfig = { damping: 25, stiffness: 250 };
   const cursorX = useSpring(mouseX, springConfig);
   const cursorY = useSpring(mouseY, springConfig);
+
+  // Reset cursor on route change
+  useEffect(() => {
+    manualModeRef.current = 'default';
+    setCursorType('default');
+  }, [pathname]);
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {

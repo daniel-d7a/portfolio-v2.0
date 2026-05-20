@@ -1,4 +1,4 @@
-import { AnimatePresence, motion, useScroll, useTransform } from 'framer-motion';
+import { AnimatePresence, motion, useScroll, useSpring, useTransform } from 'framer-motion';
 import { ArrowUpRight, Moon, Sun } from 'lucide-react';
 import PORTFOLIO_CONFIG from '../portfolio.json';
 import { useTheme } from './ThemeContext';
@@ -69,13 +69,19 @@ export function Footer({ scrollTarget }: { scrollTarget: React.RefObject<HTMLDiv
     offset: ["start end", "end end"]
   });
 
-  const y = useTransform(scrollYProgress, [0, 1], [150, 0]);
-  const opacity = useTransform(scrollYProgress, [0, 1], [0.3, 1]);
+  const smoothProgress = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 60,
+    restDelta: 0.001
+  });
+
+  const y = useTransform(smoothProgress, [0, 1], [250, 0]);
+  const opacity = useTransform(smoothProgress, [0, 1], [0, 1]);
 
   const { isLight } = useTheme()
 
   return (
-    <footer className="fixed bottom-0 left-0 w-full h-screen bg-brand-fg text-brand-bg transition-colors duration-500 overflow-hidden flex flex-col justify-between pt-24 pb-8 px-6 md:px-12 pointer-events-none">
+    <footer className="fixed bottom-0 left-0 w-full h-[50vh] bg-brand-fg text-brand-bg transition-colors duration-500 overflow-hidden flex flex-col justify-between pt-24 pb-8 px-6 md:px-12 pointer-events-none">
       {/* Background Vertical Stripes */}
       <div className={`absolute inset-0 flex pointer-events-none z-0 ${!isLight && "opacity-80"}`}>
         {STRIPE_OPACITIES.map((stripe, idx) => (
@@ -86,33 +92,13 @@ export function Footer({ scrollTarget }: { scrollTarget: React.RefObject<HTMLDiv
         ))}
       </div>
 
-      {/* Slogan & Action */}
-      <div className="w-full flex flex-col items-center justify-center grow text-center relative z-10 pointer-events-auto">
-        <h2 className="text-4xl sm:text-6xl lg:text-7xl font-display font-bold mb-8 tracking-tight leading-tight text-brand-fg">
-          Let's build something great together.
-        </h2>
-        <a
-          href={`mailto:${PORTFOLIO_CONFIG.profile.email}`}
-          className="text-brand-fg group relative inline-flex items-baseline text-3xl lg:text-4xl font-display font-black tracking-tight hover:opacity-85 transition-opacity z-10 pb-1"
-        >
-          <span className="relative">
-            Get In Touch.
-            <span className="absolute bottom-0 left-0 w-full h-1 bg-brand-fg origin-left scale-x-0 transition-transform duration-300 group-hover:scale-x-100" />
-          </span>
-          <span className="inline-block transition-transform duration-300 group-hover:translate-x-2 group-hover:-translate-y-2 text-3xl lg:text-4xl font-light ml-3 select-none">
-            <ArrowUpRight />
-          </span>
-        </a>
-      </div>
-
-      {/* BIG NAME (SLIDING UP) */}
-      <div className="w-full flex justify-center overflow-hidden leading-none relative z-0 pb-4">
+      {/* BIG NAME (SLIDING UP) - Now grows to take middle space */}
+      <div className="w-full flex flex-col justify-center grow overflow-hidden leading-none relative z-0 pb-4">
         <motion.h1
           style={{ y, opacity }}
-          className="text-[12vw] sm:text-[10vw] lg:text-[14vw] font-display font-black tracking-tighter whitespace-nowrap leading-[0.75] select-none text-brand-fg"
+          className="text-[12vw] sm:text-[10vw] lg:text-[14vw] font-display font-black tracking-tighter whitespace-nowrap leading-[0.75] select-none text-brand-fg text-center"
         >
           {PORTFOLIO_CONFIG.profile.firstName} {PORTFOLIO_CONFIG.profile.lastName} <span className="text-brand-tertiary">.</span>
-
         </motion.h1>
       </div>
 
@@ -127,6 +113,30 @@ export function Footer({ scrollTarget }: { scrollTarget: React.RefObject<HTMLDiv
         </div>
       </div>
     </footer>
+  );
+}
+
+export function ContactSection() {
+  return (
+    <section className="w-full py-24 md:py-36 px-6 md:px-12">
+      <div className="max-w-6xl mx-auto flex flex-col items-center justify-center text-center">
+        <h2 className="text-4xl sm:text-6xl lg:text-7xl font-display font-bold mb-8 tracking-tight leading-tight text-brand-fg">
+          Let's build something great together.
+        </h2>
+        <a
+          href={`mailto:${PORTFOLIO_CONFIG.profile.email}`}
+          className="text-brand-fg group relative inline-flex items-baseline text-3xl lg:text-4xl font-display font-black tracking-tight hover:opacity-85 transition-opacity pb-1"
+        >
+          <span className="relative">
+            Get In Touch.
+            <span className="absolute bottom-0 left-0 w-full h-1 bg-brand-fg origin-left scale-x-0 transition-transform duration-300 group-hover:scale-x-100" />
+          </span>
+          <span className="inline-block transition-transform duration-300 group-hover:translate-x-2 group-hover:-translate-y-2 text-3xl lg:text-4xl font-light ml-3 select-none">
+            <ArrowUpRight />
+          </span>
+        </a>
+      </div>
+    </section>
   );
 }
 

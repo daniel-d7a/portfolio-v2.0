@@ -1,5 +1,5 @@
 import { useRef } from 'react';
-import { Footer, HeaderCol, ThemeToggle } from './components/Layout';
+import { Footer, HeaderCol, ThemeToggle, ContactSection } from './components/Layout';
 import PORTFOLIO_CONFIG from './portfolio.json';
 import { ThemeProvider, useTheme } from './components/ThemeContext';
 import { Hero } from './components/HeroSection';
@@ -41,9 +41,10 @@ function AppContent() {
           <Bio />
           <Projects />
           <Services />
+          <ContactSection />
         </main>
       </div>
-      <div ref={footerRef} className="h-screen pointer-events-none" />
+      <div ref={footerRef} className="h-[50vh] pointer-events-none" />
 
       <Footer scrollTarget={footerRef} />
     </div>

@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
-import { Footer, HeaderCol, ThemeToggle, ContactSection } from './components/Layout';
+import { Footer, HeaderCol, ThemeToggle, ContactSection, BottomBlur } from './components/Layout';
 import PORTFOLIO_CONFIG from './portfolio.json';
 import { ThemeProvider, useTheme } from './components/ThemeContext';
 import { Hero } from './components/HeroSection';
@@ -92,6 +92,7 @@ function AppContent() {
         </div>
         <div ref={footerRef} className="h-[50vh] pointer-events-none" />
         <Footer scrollTarget={footerRef} />
+        <BottomBlur />
       </div>
     </BrowserRouter>
   );

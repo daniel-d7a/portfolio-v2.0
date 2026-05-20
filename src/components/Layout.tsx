@@ -176,6 +176,15 @@ export function ContactSection() {
   );
 }
 
+export function BottomBlur() {
+  return (
+    <div
+      className="fixed bottom-0 left-0 w-full h-32 pointer-events-none z-100 backdrop-blur-md mask-[linear-gradient(to_top,black,transparent)]"
+      aria-hidden="true"
+    />
+  );
+}
+
 const STRIPE_OPACITIES = [
   { dark: 'bg-brand-bg/90', light: 'bg-white/25' },
   { dark: 'bg-brand-bg/80', light: 'bg-white/45' },

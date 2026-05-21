@@ -83,6 +83,33 @@
         "/images/projects/ocd/4.png"
       ],
       "livePreviewLink": "https://ocd-new-landing-page.vercel.app/"
+    },
+    {
+      "id": "03",
+      "slug": "Zsmco",
+      "name": "Zsmco Contracting company",
+      "tags": [
+        "Dashboard",
+        "React",
+        "Redux"
+      ],
+      "description": "ZSMCO is an integrated construction and contracting management platform designed to streamline the full project lifecycle. It covers project tracking, contract management, progress billing (interim certificates), multi-level purchase orders, material requisitions, and supplier account management — all within a unified Arabic-first interface. The system enforces structured approval workflows, giving managers real-time visibility into budgets, material consumption, and payment status. Built for mid-to-large contracting firms, ZSMCO eliminates manual paperwork, reduces financial leakage, and keeps every stakeholder aligned from project kickoff to final settlement.",
+      "content": "What is ZSMCO? \nZSMCO is a comprehensive ERP-grade platform purpose-built for the construction and contracting industry. It digitizes and connects every operational and financial process across the project lifecycle — from initial budgeting and subcontractor contracts to material disbursement and final invoicing.\n\nCore Capabilities\n\nThe platform centralizes project management with real-time progress tracking, budget utilization indicators, and milestone monitoring. Its contracts module handles interim payment certificates and automated deduction calculations for retentions and advances. The procurement engine supports full purchase order cycles — from supplier quotation comparison to delivery confirmation — ensuring competitive purchasing and full audit trails.\n\nMaterial management is handled through a structured requisition and approval workflow, giving site teams the ability to request materials while management retains control through multi-tier authorization. Supplier relationship management provides a consolidated view of outstanding balances, invoices, and payment history.\n\nWhy ZSMCO?\nContracting firms operating without a unified system face cost overruns, delayed payments, and inventory gaps. ZSMCO solves this by connecting field operations with financial oversight in one platform, reducing reliance on spreadsheets and disconnected tools.\n\nWith its clean Arabic-first interface, role-based permissions, and approval-driven workflows, ZSMCO empowers contracting companies to operate with greater transparency, tighter cost control, and faster decision-making at every project stage.Sonnet 4.6",
+      "stack": [
+        "React",
+        "Redux",
+        "Tailwind CSS"
+      ],
+      "type": "Dashboard",
+      "images": [
+        "/images/projects/zsmco/1.png",
+        "/images/projects/zsmco/2.png",
+        "/images/projects/zsmco/3.png",
+        "/images/projects/zsmco/4.png",
+        "/images/projects/zsmco/5.png",
+        "/images/projects/zsmco/6.png"
+      ],
+      "livePreviewLink": ""
     }
   ],
   "services": [

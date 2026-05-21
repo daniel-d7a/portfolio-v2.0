@@ -7,7 +7,7 @@ const [color1, color2, color3] = ["#1a1a1a", "#737373", "#acacac"]
 export function Hero({ isScrolled }: { isScrolled: boolean }) {
 
     return (
-        <section className="w-full relative h-[90vh] flex flex-col justify-between overflow-hidden px-6 md:px-12 py-16 md:py-24">
+        <section className="w-full relative h-[90dvh] flex flex-col justify-between overflow-hidden px-6 md:px-12 py-16 md:py-24">
 
             <div className="absolute inset-0">
                 <Grainient

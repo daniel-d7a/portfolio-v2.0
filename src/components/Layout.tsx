@@ -200,13 +200,13 @@ export function Footer({ scrollTarget }: { scrollTarget: React.RefObject<HTMLDiv
     restDelta: 0.001
   });
 
-  const y = useTransform(smoothProgress, [0, 1], [250, 0]);
-  const opacity = useTransform(smoothProgress, [0, 1], [0, 1]);
+  const y = useTransform(smoothProgress, [0, 0.9], [250, 0]);
+  const opacity = useTransform(smoothProgress, [0, 0.9], [0, 1]);
 
   const { isLight } = useTheme()
 
   return (
-    <footer className="fixed bottom-0 left-0 w-full h-[50vh] bg-brand-fg text-brand-bg transition-colors duration-500 overflow-hidden flex flex-col justify-between pt-24 pb-8 px-4 md:px-12 pointer-events-none">
+    <footer className="fixed bottom-0 left-0 w-full h-[50dvh] bg-brand-fg text-brand-bg transition-colors duration-500 overflow-hidden flex flex-col justify-between pt-24 pb-8 px-4 md:px-12 pointer-events-none">
       {/* Background Vertical Stripes */}
       <div className={`absolute inset-0 flex pointer-events-none z-0 ${!isLight && "opacity-80"}`}>
         {STRIPE_OPACITIES.map((stripe, idx) => (

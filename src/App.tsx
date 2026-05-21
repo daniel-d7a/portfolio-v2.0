@@ -127,7 +127,7 @@ function AppContent() {
           <AnimatedRoutes isScrolled={isScrolled} />
         </main>
       </div>
-      <div ref={footerRef} className="h-[50vh] pointer-events-none" />
+      <div ref={footerRef} className="h-[50dvh] pointer-events-none" />
       <Footer scrollTarget={footerRef} />
       <BottomBlur />
     </div>

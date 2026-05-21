@@ -5,6 +5,9 @@ import path from "path"
 
 // https://vite.dev/config/
 export default defineConfig({
+  server:{
+    allowedHosts:["f90a-156-217-205-143.ngrok-free.app"]
+  },
   plugins: [react(), tailwindcss()],
   resolve: {
     alias: {
